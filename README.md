@@ -30,4 +30,4 @@ Server that uses the Gemini API to brainrot and simplify any text, made for fun
   
   • Errors will return JSON with an error reason.
 
-  • You can get a free Gemini API Key at aistudio.google.com
+  • You can get a free Gemini API Key at https://aistudio.google.com
