@@ -29,3 +29,5 @@ Server that uses the Gemini API to brainrot and simplify any text, made for fun
   • Response is only the brainrotted text with no extra phrases or confirmations.
   
   • Errors will return JSON with an error reason.
+
+  • You can get a free Gemini API Key at aistudio.google.com
