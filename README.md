@@ -1,27 +1,27 @@
 # brainrotlify
 
-💧 A project built with the Vapor web framework.
+Server that uses the Gemini API to brainrot and simplify any text, made for fun
 
-## Getting Started
+## Usage
 
-To build the project using the Swift Package Manager, run the following command in the terminal from the root of the project:
-```bash
-swift build
-```
+  POST request to /brainrot with JSON Body:
+  {
+    "apiKey": "<Your Google Gemini API Key>",
+    "message": "<Text you want brainrotted>"
+  }
 
-To run the project and start the server, use the following command:
-```bash
-swift run
-```
 
-To execute tests, use the following command:
-```bash
-swift test
-```
+Example:
+  curl "http://localhost:8080/brainrot" \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+      "apiKey": "AIzaSy...YourKey...",
+      "message": "The cat is sleeping on the couch"
+    }'
 
-### See more
 
-- [Vapor Website](https://vapor.codes)
-- [Vapor Documentation](https://docs.vapor.codes)
-- [Vapor GitHub](https://github.com/vapor)
-- [Vapor Community](https://github.com/vapor-community)
+Notes:
+  • The language of the output will match the language of your input message.
+  • Response is only the brainrotted text with no extra phrases or confirmations.
+  • Errors will return JSON with an error reason.
