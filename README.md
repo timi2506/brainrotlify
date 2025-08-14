@@ -5,7 +5,7 @@ Server that uses the Gemini API to brainrot and simplify any text, made for fun
 ## Requirements
 Vapor
 - Linux: https://docs.vapor.codes/install/linux/
-- macOS: https://docs.vapor.codes/install/macOS/
+- macOS: https://docs.vapor.codes/install/macos/
 
 ## Usage
 
