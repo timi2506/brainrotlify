@@ -2,6 +2,11 @@
 
 Server that uses the Gemini API to brainrot and simplify any text, made for fun
 
+## Requirements
+Vapor
+- Linux: https://docs.vapor.codes/install/linux/
+- macOS: https://docs.vapor.codes/install/macOS/
+
 ## Usage
 
   POST request to /brainrot with JSON Body:
