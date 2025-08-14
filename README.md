@@ -30,9 +30,8 @@ swift run
     "message": "<Text you want brainrotted>"
   }
 
-TIP: You can add a saved API key in /Sources/brainrotlify/CONFIGURATION.swift to allow the apiKey to be left our of the Request and use the saved API key but 
-
-WARNING: this is recommended to only be used when you know the server can only be accessed by you as it allows anyone that has access to your server to use your API Key.
+TIP: You can add a saved API key, for more info check the [Configuration](#configuration)
+ Section
 
 ## Example
 ```bash
