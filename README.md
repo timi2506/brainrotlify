@@ -70,8 +70,9 @@ After modifying the contents of the configuration file you have to restart the s
 
 TIP: You can also change the Port Temporarely by starting the server with
 ```bash
-PORT=ANYPORT(1234 for example) swift run
+PORT=1234 swift run
 ```
+where 1234 is your desired Port
 ### Default Configuration File
 ```swift
 import Foundation
