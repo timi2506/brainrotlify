@@ -9,6 +9,7 @@ Vapor
 
 ## Starting the Server
 
+### Method 1: Terminal
 Make sure you are in the Project Root, you can check this by running `ls`, the output should look something like this:
 
 ```bash
@@ -21,6 +22,9 @@ Once you made sure you are in the correct directory, run
 ```bash
 swift run
 ```
+
+### Method 2: Xcode (macOS Only)
+Open the Package.swift file in Xcode, under Run Destinations select "My Mac" and Press Run (Play Icon or CMD + R)
 
 ## Usage
 
