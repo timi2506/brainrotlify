@@ -7,6 +7,9 @@ Vapor
 - Linux: https://docs.vapor.codes/install/linux/
 - macOS: https://docs.vapor.codes/install/macos/
 
+A Copy of this Project
+- Download from Browser: https://github.com/timi2506/brainrotlify/archive/refs/heads/main.zip
+- Clone with git: `git clone https://github.com/timi2506/brainrotlify/`
 ## Starting the Server
 
 ### Method 1: Terminal
