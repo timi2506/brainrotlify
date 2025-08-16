@@ -13,7 +13,7 @@ func routes(_ app: Application) throws {
           }
 
         Example:
-          curl "http://localhost:8080/brainrot" \\
+          curl "http://localhost:\(app.http.server.configuration.port)/brainrot" \\
             -X POST \\
             -H "Content-Type: application/json" \\
             -d '{
