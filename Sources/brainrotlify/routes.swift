@@ -28,6 +28,13 @@ func routes(_ app: Application) throws {
         """
     }
     
+    app.get("favicon.ico") { req -> Response in
+        return req.redirect(
+            to: "https://i.ibb.co/XfzTNWM3/temp-Image-PEv5-P1.jpg",
+            redirectType: .permanent
+        )
+    }
+    
     app.post("brainrot") { req async throws -> String in
         guard let data = req.body.data else { throw Abort(.badRequest, reason: "Missing request body") }
         let decoder = JSONDecoder()
