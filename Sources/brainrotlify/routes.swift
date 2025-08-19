@@ -6,10 +6,10 @@ func routes(_ app: Application) throws {
         Server up
 
         Usage:
-          POST request to /brainrot with JSON Body:
+          POST request to /brainrot or /antiBrainrot with JSON Body:
           {
             "apiKey": "<Your Google Gemini API Key>",
-            "message": "<Text you want brainrotted>"
+            "message": "<Text you want brainrotted/unbrainrotted>"
           }
 
         Example:

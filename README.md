@@ -30,18 +30,20 @@ swift run
 Open the Package.swift file in Xcode, under Run Destinations select "My Mac" and Press Run (Play Icon or CMD + R)
 
 ## Usage
-
-  POST request to /brainrot with JSON Body:
+  POST request to /brainrot or /antiBrainrot with JSON Body:
+  ```json
   {
     "apiKey": "<Your Google Gemini API Key>",
-    "message": "<Text you want brainrotted>"
+    "message": "<Text you want brainrotted/unbrainrotted>"
   }
+```
 
 TIP: You can add a saved API key in /Sources/brainrotlify/CONFIGURATION.swift to allow the apiKey to be left our of the Request and use the saved API key but 
 
 WARNING: this is recommended to only be used when you know the server can only be accessed by you as it allows anyone that has access to your server to use your API Key.
 
-## Example
+## Examples
+### /brainrot
 ```bash
   curl "http://localhost:8080/brainrot" \
     -X POST \
@@ -51,7 +53,16 @@ WARNING: this is recommended to only be used when you know the server can only b
       "message": "The cat is sleeping on the couch"
     }'
 ```
-
+### /antiBrainrot
+```bash
+  curl "http://localhost:8080/antiBrainrot" \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+      "apiKey": "YOUR GEMINI API KEY (typically AIzaSy...)",
+      "message": "The cat is sleeping on the couch"
+    }'
+```
 ## Notes
 
   • The language of the output will match the language of your input message.
