@@ -2,7 +2,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "brainrotlify",
+    name: "Owenify",
     platforms: [
        .macOS(.v13)
     ],
@@ -12,7 +12,7 @@ let package = Package(
     ],
     targets: [
         .executableTarget(
-            name: "brainrotlify",
+            name: "Owenify",
             dependencies: [
                 .product(name: "Vapor", package: "vapor"),
                 .product(name: "NIOCore", package: "swift-nio"),

@@ -1,107 +1,86 @@
-# brainrotlify
+# Owenify
 
-Server that uses the Gemini API to brainrot and simplify any text, made for fun
+Owenify is a simple, self-hostable URL shortener and IP logger, similar to Grabify. It's built with Swift and Vapor and is designed to be easy to set up and use. This project is open source and available on GitHub.
 
-## Requirements
-Vapor
-- Linux: https://docs.vapor.codes/install/linux/
-- macOS: https://docs.vapor.codes/install/macos/
+## Features
 
-A Copy of this Project
-- Download from Browser: https://github.com/timi2506/brainrotlify/archive/refs/heads/main.zip
-- Clone with git: `git clone https://github.com/timi2506/brainrotlify/`
-## Starting the Server
+-   **URL Shortening**: Create short links that redirect to a configurable URL.
+-   **IP Logging**: Log the IP address and User-Agent of everyone who clicks on a shortened link.
+-   **Easy to Deploy**: Run it with Docker or build it from source.
+-   **FOSS**: Free and Open Source Software.
 
-### Method 1: Terminal
-Make sure you are in the Project Root, you can check this by running `ls`, the output should look something like this:
+## Setup and Running
 
-```bash
-Dockerfile        Package.swift        Sources
-Package.resolved    README.md        docker-compose.yml
-```
+### Docker (Recommended)
 
-Once you made sure you are in the correct directory, run 
+The easiest way to run Owenify is with Docker.
 
-```bash
-swift run
-```
+1.  **Build the Docker image**:
+    ```bash
+    docker compose build
+    ```
 
-### Method 2: Xcode (macOS Only)
-Open the Package.swift file in Xcode, under Run Destinations select "My Mac" and Press Run (Play Icon or CMD + R)
+2.  **Run the server**:
+    ```bash
+    docker compose up app
+    ```
+
+The server will be running on port 8080.
+
+### From Source
+
+You can also build and run Owenify from source.
+
+**Requirements**:
+- Swift 6.0 or later
+- Vapor
+
+1.  **Clone the repository**:
+    ```bash
+    git clone <repository-url>
+    cd owenify
+    ```
+
+2.  **Build and run the server**:
+    ```bash
+    swift run
+    ```
 
 ## Usage
-  POST request to /brainrot or /antiBrainrot with JSON Body:
-  ```json
-  {
-    "apiKey": "<Your Google Gemini API Key>",
-    "message": "<Text you want brainrotted/unbrainrotted>"
-  }
-```
 
-TIP: You can add a saved API key in /Sources/brainrotlify/CONFIGURATION.swift to allow the apiKey to be left our of the Request and use the saved API key but 
+### Create a new shortened link
 
-WARNING: this is recommended to only be used when you know the server can only be accessed by you as it allows anyone that has access to your server to use your API Key.
+Send a POST request to the `/create` endpoint.
 
-## Examples
-### /brainrot
 ```bash
-  curl "http://localhost:8080/brainrot" \
-    -X POST \
-    -H "Content-Type: application/json" \
-    -d '{
-      "apiKey": "YOUR GEMINI API KEY (typically AIzaSy...)",
-      "message": "The cat is sleeping on the couch"
-    }'
+curl -X POST http://localhost:8080/create
 ```
-### /antiBrainrot
+
+The response will be a JSON object containing the shortened URL and the info URL.
+
+```json
+{
+  "shortened_url": "0.0.0.0:8080/xxxxxx",
+  "info_url": "0.0.0.0:8080/info/xxxxxx"
+}
+```
+
+### View link stats
+
+To view the stats for a shortened link, visit the `info_url` provided in the create response.
+
 ```bash
-  curl "http://localhost:8080/antiBrainrot" \
-    -X POST \
-    -H "Content-Type: application/json" \
-    -d '{
-      "apiKey": "YOUR GEMINI API KEY (typically AIzaSy...)",
-      "message": "The cat is sleeping on the couch"
-    }'
+curl http://localhost:8080/info/xxxxxx
 ```
-## Notes
 
-  • The language of the output will match the language of your input message.
-  
-  • Response is only the brainrotted text with no extra phrases or confirmations.
-  
-  • Errors will return JSON with an error reason.
+This will return a JSON object with the link details and a list of stats for each click.
 
-  • You can get a free Gemini API Key at https://aistudio.google.com
-  
 ## Configuration
 
-Brainrotlify comes with a Configuration File at /Sources/brainrotlify/CONFIGURATION.swift
+You can configure the server by editing the `Sources/Owenify/Config.swift` file.
 
-It has the following Configuration Parameters:
+-   `port`: The port the server will run on. Default: `8080`.
+-   `hostname`: The hostname the server will bind to. Default: `"0.0.0.0"`.
+-   `redirectURL`: The URL that the shortened links will redirect to. Default: A rickroll.
 
-- port: The Port the Server has to use - By Default: 8080
-- hostname: The Hostname the Server should use - By Default: "0.0.0.0"
-- savedAPIKey: Allow the apiKey to be left our of the Request and use the saved API key but 
-    WARNING: this is recommended to only be used when you know the server can only be accessed by you as it allows anyone that has access to your server to use your API Key.
-
-After modifying the contents of the configuration file you have to restart the server
-
-TIP: You can also change the Port Temporarely by starting the server with
-```bash
-PORT=1234 swift run
-```
-where 1234 is your desired Port
-### Default Configuration File
-```swift
-import Foundation
-
-struct ServerConfiguration {
-    // DEFAULT: 8080 - The Default Port for Vapor Servers
-    static let port = 8080
-    // DEFAULT: "0.0.0.0" which allows it to be accessible to everyone, not just localhost
-    static let hostname = "0.0.0.0"
-    // DEFAULT: "" (empty), this is recommended to only be used when you know the server can only be accessed by you as it allows anyone that has access to your server to use your API Key.
-    static let savedAPIKey = ""
-}
-
-```
+After modifying the configuration, you'll need to rebuild and restart the server.
